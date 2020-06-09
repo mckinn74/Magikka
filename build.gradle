@@ -1,0 +1,45 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+    id 'war'
+}
+
+group = 'com.semckinley'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	implementation 'io.magicthegathering:javasdk:0.0.16'
+
+	implementation 'com.typesafe.akka:akka-actor_2.12:2.6.3'
+//    testCompile "com.typesafe.akka:akka-testkit_2.12:2.6.3"
+//    testCompile "com.typesafe.akka:akka-stream-testkit_2.12:2.6"
+	implementation 'com.typesafe.akka:akka-stream_2.12:2.6.3'
+//	implementation 'com.typesafe.akka:akka-stream-kafka_2.12:0.21'
+
+	implementation 'com.typesafe.akka:akka-slf4j_2.12:2.6.3'
+	implementation 'com.lightbend.akka:akka-stream-alpakka-jms_2.12:1.1.1'
+
+}
+
+test {
+    useJUnitPlatform()
+}
